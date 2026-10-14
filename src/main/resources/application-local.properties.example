@@ -1,0 +1,3 @@
+# Copie este arquivo para application-local.properties e preencha com suas credenciais
+spring.datasource.username=root
+spring.datasource.password=
