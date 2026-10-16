@@ -31,6 +31,18 @@ public class Cake {
     }
 
 
+    public void updateInformation( DataUpdateCake data) {
 
+        if (data.flavor() != null) {
+            this.flavor = data.flavor();
+        }
+        if(data.price() != null) {
+            this.price = data.price();
+        }
 
+    }
+
+    public void deactivate() {
+        this.active = false;
+    }
 }

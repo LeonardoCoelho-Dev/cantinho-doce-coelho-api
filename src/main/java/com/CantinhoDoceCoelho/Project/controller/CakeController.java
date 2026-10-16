@@ -1,10 +1,7 @@
 package com.CantinhoDoceCoelho.Project.controller;
 
 
-import com.CantinhoDoceCoelho.Project.domain.cake.Cake;
-import com.CantinhoDoceCoelho.Project.domain.cake.CakeRegister;
-import com.CantinhoDoceCoelho.Project.domain.cake.CakeRepository;
-import com.CantinhoDoceCoelho.Project.domain.cake.DataDetailedCake;
+import com.CantinhoDoceCoelho.Project.domain.cake.*;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -40,5 +37,24 @@ public class CakeController {
         return ResponseEntity.ok(page);
     }
 
+    @PutMapping
+    @Transactional
+    public ResponseEntity update (@RequestBody @Valid DataUpdateCake data){
+        var cake = cakeRepository.getReferenceById(data.id());
+        cake.updateInformation(data);
+
+        return ResponseEntity.ok(new DataDetailedCake(cake));
+    }
+
+    @DeleteMapping("/{id}")
+    @Transactional
+    public ResponseEntity delete(@PathVariable Long id){
+        var cake = cakeRepository.getReferenceById(id);
+
+        cake.deactivate();
+
+        return ResponseEntity.noContent().build();
+
+    }
 
 }
