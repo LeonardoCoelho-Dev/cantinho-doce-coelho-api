@@ -5,13 +5,15 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
+import java.math.BigDecimal;
+
 @Embeddable
 @Getter
 @NoArgsConstructor
 @AllArgsConstructor
 public class Price {
 
-    private Long price;
+    private BigDecimal price;
 
 
 }
