@@ -1,7 +1,10 @@
 package com.CantinhoDoceCoelho.Project.domain.cake;
 
 import com.CantinhoDoceCoelho.Project.domain.cake.price.Price;
+import jakarta.validation.Valid;
 import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Positive;
+
 
 public record DataUpdateCake(
 
@@ -10,6 +13,7 @@ public record DataUpdateCake(
 
         Flavor flavor,
 
+        @Valid
         Price price
 ) {
 }
