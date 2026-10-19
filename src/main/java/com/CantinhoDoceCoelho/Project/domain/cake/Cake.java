@@ -1,6 +1,6 @@
 package com.CantinhoDoceCoelho.Project.domain.cake;
 
-import com.CantinhoDoceCoelho.Project.domain.cake.price.Price;
+import com.CantinhoDoceCoelho.Project.domain.shared.Price;
 import jakarta.persistence.*;
 import lombok.*;
 
