@@ -1,6 +1,9 @@
 package com.CantinhoDoceCoelho.Project.controller;
 
 import com.CantinhoDoceCoelho.Project.domain.user.DataAuthentication;
+import com.CantinhoDoceCoelho.Project.domain.user.User;
+import com.CantinhoDoceCoelho.Project.infra.security.DataTokenJWT;
+import com.CantinhoDoceCoelho.Project.infra.security.TokenService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -18,12 +21,17 @@ public class AutenticationController {
     @Autowired
     private AuthenticationManager manager;
 
+    @Autowired
+    private TokenService tokenService;
+
     @PostMapping
     public ResponseEntity logIn(@RequestBody @Valid DataAuthentication data) {
-        var token = new UsernamePasswordAuthenticationToken(data.login(), data.password());
-        var authentication = manager.authenticate(token);
+        var authenticationToken = new UsernamePasswordAuthenticationToken(data.login(), data.password());
+        var authentication = manager.authenticate(authenticationToken);
 
-        return ResponseEntity.ok().build();
+        var tokenJWT = tokenService.generateToken((User) authentication.getPrincipal());
+
+        return ResponseEntity.ok(new DataTokenJWT(tokenJWT));
     }
 
 }
