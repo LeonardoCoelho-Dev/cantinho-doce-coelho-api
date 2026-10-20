@@ -57,4 +57,11 @@ public class CakeController {
 
     }
 
+    @GetMapping("/{id}")
+    public ResponseEntity detailCake(@PathVariable Long id){
+
+        var cake = cakeRepository.getReferenceById(id);
+        return ResponseEntity.ok(new DataDetailedCake(cake));
+    }
+
 }
