@@ -1,4 +1,4 @@
-package com.CantinhoDoceCoelho.Project.domain.cake.price;
+package com.CantinhoDoceCoelho.Project.domain.shared;
 
 import jakarta.persistence.Embeddable;
 import jakarta.validation.constraints.Positive;
